@@ -11,19 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.launchcode.cheesemvc.models.Cheese.cheeseGet;
+import static org.launchcode.cheesemvc.models.Cheese.cheeseSet;
+
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
-
-    private static HashMap<String, String> cheeses = new HashMap<>();
-
-    public static HashMap<String, String> cheeseGet() {
-        return cheeses;
-    }
-
-    public static void cheeseSet(String cheeseKey, String cheeseValue) {
-        cheeses.put(cheeseKey, cheeseValue);
-    }
 
     @RequestMapping(value = "")
     public String index(Model model) {
