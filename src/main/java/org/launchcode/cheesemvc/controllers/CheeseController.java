@@ -9,17 +9,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
 
-    static ArrayList<String> cheeses = new ArrayList<>();
+    private static HashMap<String, String> cheeses = new HashMap<>();
+
+    public static HashMap<String, String> cheeseGet() {
+        return cheeses;
+    }
+
+    public static void cheeseSet(String cheeseKey, String cheeseValue) {
+        cheeses.put(cheeseKey, cheeseValue);
+    }
 
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("cheeses", cheeseGet());
         model.addAttribute("head", "cheesers");
         model.addAttribute("title", "My Cheese");
         return "cheese/index";
@@ -32,8 +41,8 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheeseForm(@RequestParam String cheeseName) {
-        cheeses.add(cheeseName);
+    public String processAddCheeseForm(@RequestParam String cheeseName, @RequestParam String cheeseDesc) {
+        cheeseSet(cheeseName, cheeseDesc);
         return "redirect:";
     }
 }
