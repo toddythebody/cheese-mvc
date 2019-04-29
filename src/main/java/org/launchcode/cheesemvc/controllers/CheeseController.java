@@ -2,27 +2,26 @@ package org.launchcode.cheesemvc.controllers;
 
 
 import org.launchcode.cheesemvc.models.Cheese;
+import org.launchcode.cheesemvc.models.CheeseData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
 
-    static ArrayList<Cheese> cheeses= new ArrayList<>();
 
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("head", "cheesers");
         model.addAttribute("title", "My Cheese");
         return "cheese/index";
@@ -35,26 +34,25 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheeseForm(@RequestParam String cheeseName, @RequestParam String cheeseDesc) {
-        Cheese newCheese = new Cheese(cheeseName, cheeseDesc);
-        cheeses.add(newCheese);
+    public String processAddCheeseForm(@ModelAttribute Cheese newCheese) {
+        CheeseData.add(newCheese);
         return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemove(Model model) {
 
-        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("title", "My Cheese");
 
         return "cheese/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemove(@RequestParam ArrayList<String> aCheeses) {
+    public String processRemove(@RequestParam(value = "aCheeses", required = false, defaultValue = "0") int[] aCheeses) {
 
-        for (String cheese : aCheeses) {
-            cheeses.remove(cheese);
+        for (int cheese : aCheeses) {
+            CheeseData.remove(cheese);
         }
 
         return "redirect:";
