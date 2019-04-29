@@ -5,9 +5,11 @@
 <h1 th:text="${title}"></h1>
 <nav th:replace="fragments :: navigation"></nav>
 <form method="POST" action="/cheese/editPost">
-    <input type="text" name="cheeseName" th:value="${theCheese.cheeseName}">
+    <label for="cheeseName">Name: </label><br>
+    <input id="cheeseName" type="text" name="cheeseName" th:value="${theCheese.cheeseName}">
     <br><br>
-    <textarea name="cheeseValue" th:text="${theCheese.cheeseValue}"></textarea>
+    <label for="cheeseValue">Description: </label><br>
+    <textarea id="cheeseValue" name="cheeseValue" th:text="${theCheese.cheeseValue}"></textarea>
     <br><br>
     <input type="hidden" th:value="${theCheese.cheeseId}" name="cheeseId" />
     <input type="submit" value="Edit Cheese">

@@ -1,10 +1,16 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashMap;
 
 public class Cheese {
 
+    @NotNull
+    @Size(min=3, max=15)
     private String cheeseName;
+    @NotNull
+    @Size(min=3, max=100)
     private String cheeseValue;
     private int cheeseId;
     private static int nextId = 1;
