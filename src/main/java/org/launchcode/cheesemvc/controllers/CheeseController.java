@@ -53,7 +53,7 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemove(@RequestParam(value = "aCheeses", required = false, defaultValue = "0") int[] aCheeses) {
+    public String processRemove(@RequestParam(value = "aCheeses", required = false, defaultValue = "") int[] aCheeses) {
 
         for (int cheese : aCheeses) {
             CheeseData.remove(cheese);
