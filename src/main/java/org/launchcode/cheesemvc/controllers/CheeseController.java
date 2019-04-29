@@ -38,4 +38,23 @@ public class CheeseController {
         cheeseSet(cheeseName, cheeseDesc);
         return "redirect:";
     }
+
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemove(Model model) {
+
+        model.addAttribute("cheeses", cheeseGet().keySet());
+        model.addAttribute("title", "My Cheese");
+
+        return "cheese/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemove(@RequestParam ArrayList<String> cheeses) {
+
+        for (String cheese : cheeses) {
+            cheeseGet().remove(cheese);
+        }
+
+        return "redirect:";
+    }
 }
