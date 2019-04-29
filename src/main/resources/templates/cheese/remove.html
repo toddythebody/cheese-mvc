@@ -7,8 +7,8 @@
     <p th:unless="${cheeses} and ${cheeses.size()}">no cheese</p>
     <form method="POST">
         <div th:each="cheese : ${cheeses}">
-            <label th:for="${cheese}" th:text="${cheese}"></label>
-            <input type="checkbox" name="cheeses" th:value="${cheese}" th:id="${cheese}" />
+            <label th:for="${cheese.cheeseName}" th:text="${cheese.cheeseName}"></label>
+            <input type="checkbox" name="aCheeses" th:value="${cheese.cheeseName}" th:id="${cheese.cheeseName}" />
             <br>
         </div>
         <br><br>

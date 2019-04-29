@@ -3,13 +3,28 @@ package org.launchcode.cheesemvc.models;
 import java.util.HashMap;
 
 public class Cheese {
-    private static HashMap<String, String> cheeses = new HashMap<>();
 
-    public static HashMap<String, String> cheeseGet() {
-        return cheeses;
+    private String cheeseName;
+    private String cheeseValue;
+
+    public Cheese(String cheeseName, String cheeseValue) {
+        this.cheeseName = cheeseName;
+        this.cheeseValue = cheeseValue;
     }
 
-    public static void cheeseSet(String cheeseKey, String cheeseValue) {
-        cheeses.put(cheeseKey, cheeseValue);
+    public String getCheeseName() {
+        return cheeseName;
+    }
+
+    public void setCheeseName(String cheeseName) {
+        this.cheeseName = cheeseName;
+    }
+
+    public String getCheeseValue() {
+        return cheeseValue;
+    }
+
+    public void setCheeseValue(String cheeseValue) {
+        this.cheeseValue = cheeseValue;
     }
 }
