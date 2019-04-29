@@ -66,7 +66,7 @@ public class CheeseController {
         return "cheese/edit";
     }
 
-    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    @RequestMapping(value = "editPost", method = RequestMethod.POST)
     public String processEditForm(@RequestParam int cheeseId,@RequestParam String cheeseName,@RequestParam String cheeseValue) {
 
         CheeseData.edit(cheeseId, cheeseName, cheeseValue);
