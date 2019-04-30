@@ -36,10 +36,11 @@ public class CheeseData {
 
     }
 
-    public static void edit(int id, String name, String value) {
+    public static void edit(int id, String name, String value, CheeseType type) {
         Cheese newCheese = getById(id);
         newCheese.setCheeseName(name);
         newCheese.setCheeseValue(value);
+        newCheese.setType(type);
     }
 
 }
