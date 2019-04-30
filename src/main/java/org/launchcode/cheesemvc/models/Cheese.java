@@ -12,6 +12,8 @@ public class Cheese {
     @NotNull
     @Size(min=3, max=100)
     private String cheeseValue;
+
+    private CheeseType type;
     private int cheeseId;
     private static int nextId = 1;
 
@@ -56,5 +58,13 @@ public class Cheese {
 
     public void setCheeseValue(String cheeseValue) {
         this.cheeseValue = cheeseValue;
+    }
+
+    public CheeseType getType() {
+        return type;
+    }
+
+    public void setType(CheeseType type) {
+        this.type = type;
     }
 }

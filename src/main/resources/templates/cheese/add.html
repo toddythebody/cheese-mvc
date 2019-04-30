@@ -13,6 +13,10 @@
         <input th:field="*{cheeseValue}" />
         <span th:errors="*{cheeseValue}"></span>
         <br><br>
+        <label th:for="type"></label>
+        <select th:field="*{type}">
+            <option th:each="cheeseType : ${cheeseTypes}" th:text="${cheeseType.name}" th:value="${cheeseType}"></option>
+        </select>
         <input type="submit" value="Add Cheese">
     </form>
 </body>
