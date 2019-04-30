@@ -39,7 +39,7 @@ public class CheeseController {
     public String processAddCheeseForm(@ModelAttribute @Valid Cheese newCheese, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
-            return "cheese/add";
+            return "redirect:add";
         }
         CheeseData.add(newCheese);
         return "redirect:";
@@ -72,15 +72,22 @@ public class CheeseController {
 
         model.addAttribute("title", title);
         model.addAttribute("theCheese", theCheese);
-        model.addAttribute(new Cheese());
+        model.addAttribute(theCheese);
 
         return "cheese/edit";
     }
 
     @RequestMapping(value = "editPost", method = RequestMethod.POST)
-    public String processEditForm(@RequestParam int cheeseId,@RequestParam String cheeseName,@RequestParam String cheeseValue) {
+    public String processEditForm(@RequestParam int cheeseId,
+                                  @ModelAttribute @Valid Cheese newCheese, Errors errors, Model model) {
 
-        CheeseData.edit(cheeseId, cheeseName, cheeseValue);
+        if (errors.hasErrors()) {
+            String title = "Editing " + newCheese.getCheeseName() + "(Id# " + newCheese.getCheeseId() + ")";
+            model.addAttribute("title", title);
+            return "redirect:edit/" + cheeseId;
+        }
+
+        CheeseData.edit(cheeseId, newCheese.getCheeseName(), newCheese.getCheeseValue());
 
         return "redirect:";
     }

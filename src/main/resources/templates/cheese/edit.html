@@ -4,12 +4,14 @@
 <body>
 <h1 th:text="${title}"></h1>
 <nav th:replace="fragments :: navigation"></nav>
-<form method="POST" action="/cheese/editPost">
-    <label for="cheeseName">Name: </label><br>
-    <input id="cheeseName" type="text" name="cheeseName" th:value="${theCheese.cheeseName}">
+<form method="POST" action="/cheese/editPost" th:object="${cheese}">
+    <label th:for="*{cheeseName}">Name: </label><br>
+    <input th:field="*{cheeseName}" />
+    <span th:errors="*{cheeseName}"></span>
     <br><br>
-    <label for="cheeseValue">Description: </label><br>
-    <textarea id="cheeseValue" name="cheeseValue" th:text="${theCheese.cheeseValue}"></textarea>
+    <label th:for="*{cheeseValue}">Description: </label><br>
+    <input th:field="*{cheeseValue}" />
+    <span th:errors="*{cheeseValue}"></span>
     <br><br>
     <input type="hidden" th:value="${theCheese.cheeseId}" name="cheeseId" />
     <input type="submit" value="Edit Cheese">
