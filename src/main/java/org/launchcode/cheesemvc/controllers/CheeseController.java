@@ -92,7 +92,7 @@ public class CheeseController {
             return "cheese/edit";
         }
 
-        CheeseData.edit(cheeseId, newCheese.getCheeseName(), newCheese.getCheeseValue(), newCheese.getType());
+        CheeseData.edit(cheeseId, newCheese.getCheeseName(), newCheese.getCheeseValue(), newCheese.getType(), newCheese.getCheeseRating());
 
         return "redirect:/cheese";
     }

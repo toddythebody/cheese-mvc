@@ -2,23 +2,26 @@
 <html lang="en" xmlns:th="Http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<h1 th:text="${title}"></h1>
-<nav th:replace="fragments :: navigation"></nav>
-<form method="post" th:object="${cheese}">
-    <label th:for="*{cheeseName}">Name: </label><br>
-    <input th:field="*{cheeseName}" />
-    <span th:errors="*{cheeseName}"></span>
-    <br><br>
-    <label th:for="*{cheeseValue}">Description: </label><br>
-    <input th:field="*{cheeseValue}" />
-    <span th:errors="*{cheeseValue}"></span>
-    <br><br>
-    <label th:for="*{type}"></label>
-    <select th:field="*{type}">
-        <option th:each="cheeseType : ${cheeseTypes}" th:text="${cheeseType.name}" th:value="${cheeseType}"></option>
-    </select>
-    <input type="hidden" th:value="${theCheese.cheeseId}" name="cheeseId" />
-    <input type="submit" value="Edit Cheese">
-</form>
+    <h1 th:text="${title}"></h1>
+    <nav th:replace="fragments :: navigation"></nav>
+    <form method="post" th:object="${cheese}">
+        <label th:for="*{cheeseName}">Name: </label><br>
+        <input th:field="*{cheeseName}" />
+        <span th:errors="*{cheeseName}"></span>
+        <br><br>
+        <label th:for="*{cheeseValue}">Description: </label><br>
+        <input th:field="*{cheeseValue}" />
+        <span th:errors="*{cheeseValue}"></span>
+        <br><br>
+        <label th:for="*{type}"></label>
+        <select th:field="*{type}">
+            <option th:each="cheeseType : ${cheeseTypes}" th:text="${cheeseType.name}" th:value="${cheeseType}"></option>
+        </select><br><br>
+        <label th:for="*{cheeseRating}"></label>
+        <input th:field="*{cheeseRating}" />
+        <span th:errors="*{cheeseRating}"></span><br><br>
+        <input type="hidden" th:value="${theCheese.cheeseId}" name="cheeseId" />
+        <input type="submit" value="Edit Cheese">
+    </form>
 </body>
 </html>
