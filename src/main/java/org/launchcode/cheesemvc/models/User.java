@@ -1,9 +1,19 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class User {
 
+    @NotNull
+    @Pattern(regexp = "^[a-zA-Z]{5,15}$", message = "Must be 5-15 \"letters\" only")
     private String username;
+    @NotNull
+    @Size(min = 5, max = 50)
     private String email;
+    @NotNull
+    @Size(min = 3, max = 30)
     private String password;
     private int userId;
     private static int nextUserId;

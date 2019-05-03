@@ -1,9 +1,6 @@
 package org.launchcode.cheesemvc.models;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.HashMap;
 
 public class Cheese {
@@ -15,15 +12,14 @@ public class Cheese {
     @Size(min=3, max=100)
     private String cheeseValue;
     @NotNull
-    @Min(value = 1, message = "Rating must be a value of 1-5")
-    @Max(value = 5, message = "Rating must be a value of 1-5")
-    private int cheeseRating;
+    @Pattern(regexp = "^[1-5]$", message = "Choose a rating from 1 to 5")
+    private String cheeseRating;
 
     private CheeseType type;
     private int cheeseId;
     private static int nextId = 1;
 
-    public Cheese(String cheeseName, String cheeseValue, int cheeseRating) {
+    public Cheese(String cheeseName, String cheeseValue, String cheeseRating) {
         this();
         this.cheeseName = cheeseName;
         this.cheeseValue = cheeseValue;
@@ -35,11 +31,11 @@ public class Cheese {
         nextId++;
     }
 
-    public int getCheeseRating() {
+    public String getCheeseRating() {
         return cheeseRating;
     }
 
-    public void setCheeseRating(int cheeseRating) {
+    public void setCheeseRating(String cheeseRating) {
         this.cheeseRating = cheeseRating;
     }
 

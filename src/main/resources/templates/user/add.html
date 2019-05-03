@@ -3,19 +3,24 @@
 <head th:replace="fragments :: head"></head>
 <body>
     <h1 th:text="${title}"></h1>
+    <div th:text="${existError}"></div>
 
     <form method="post" th:object="${user}">
         <label th:for="*{username}">User Name: </label>
-        <input th:field="*{username}" /><br><br>
+        <input th:field="*{username}" /><br>
+        <span th:errors="*{username}"></span><br>
 
         <label th:for="*{email}">Email: </label>
-        <input type="email" th:field="*{email}" /><br><br>
+        <input type="email" th:field="*{email}" /><br>
+        <span th:errors="*{email}"></span><br>
 
         <label th:for="*{password}">Password: </label>
-        <input type="password" th:field="*{password}" /><br><br>
+        <input type="password" th:field="*{password}" /><br>
+        <span th:errors="*{password}"></span><br>
 
         <label for="verify">Verify Password: </label>
-        <input id="verify" type="password" name="verify" /><br><br>
+        <input id="verify" type="password" name="verify" /><br>
+        <span th:text="${verifyError}"></span><br>
 
         <input type="submit" value="Register" />
     </form>
