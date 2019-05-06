@@ -27,7 +27,7 @@ public class CheeseData {
         Cheese theCheese = null;
 
         for (Cheese cheese : cheeses) {
-            if (cheese.getCheeseId() == id) {
+            if (cheese.getId() == id) {
                 theCheese = cheese;
             }
         }

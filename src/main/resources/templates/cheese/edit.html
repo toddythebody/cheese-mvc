@@ -20,7 +20,7 @@
         <label th:for="*{cheeseRating}"></label>
         <input th:field="*{cheeseRating}" />
         <span th:errors="*{cheeseRating}"></span><br><br>
-        <input type="hidden" th:value="${theCheese.cheeseId}" name="cheeseId" />
+        <input type="hidden" th:value="${theCheese.id}" name="cheeseId" />
         <input type="submit" value="Edit Cheese">
     </form>
 </body>

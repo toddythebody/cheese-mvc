@@ -1,10 +1,17 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.util.HashMap;
 
+@Entity
 public class Cheese {
 
+    @Id
+    @GeneratedValue
+    private int id;
     @NotNull
     @Size(min=3, max=15)
     private String cheeseName;
@@ -14,21 +21,19 @@ public class Cheese {
     @NotNull
     @Pattern(regexp = "^[1-5]$", message = "Choose a rating from 1 to 5")
     private String cheeseRating;
-
     private CheeseType type;
-    private int cheeseId;
-    private static int nextId = 1;
+
 
     public Cheese(String cheeseName, String cheeseValue, String cheeseRating) {
-        this();
         this.cheeseName = cheeseName;
         this.cheeseValue = cheeseValue;
         this.cheeseRating = cheeseRating;
     }
 
-    public Cheese() {
-        cheeseId = nextId;
-        nextId++;
+    public Cheese() { }
+
+    public int getId() {
+        return id;
     }
 
     public String getCheeseRating() {
@@ -37,22 +42,6 @@ public class Cheese {
 
     public void setCheeseRating(String cheeseRating) {
         this.cheeseRating = cheeseRating;
-    }
-
-    public int getCheeseId() {
-        return cheeseId;
-    }
-
-    public void setCheeseId(int cheeseId) {
-        this.cheeseId = cheeseId;
-    }
-
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        Cheese.nextId = nextId;
     }
 
     public String getCheeseName() {
