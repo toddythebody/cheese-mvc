@@ -72,8 +72,7 @@ public class CheeseController {
     @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int cheeseId) {
 
-        Optional<Cheese> aCheese = cheeseDao.findById(cheeseId);
-        Cheese theCheese = aCheese.get();
+        Cheese theCheese = cheeseDao.findById(cheeseId).get();
         String title = "Editing " + theCheese.getCheeseName() + "(Id# " + theCheese.getId() + ")";
 
         model.addAttribute("title", title);
