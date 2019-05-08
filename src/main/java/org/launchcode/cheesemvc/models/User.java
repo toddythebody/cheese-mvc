@@ -1,49 +1,39 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
+    private int id;
     @NotNull
     @Pattern(regexp = "^[a-zA-Z]{5,15}$", message = "Must be 5-15 \"letters\" only")
     private String username;
     @NotNull
-    @Size(min = 5, max = 50)
+    @Email(message = "Email must be valid")
     private String email;
     @NotNull
     @Size(min = 3, max = 30)
     private String password;
-    private int userId;
-    private static int nextUserId;
 
     public User(String username, String email, String password) {
-        this();
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public User() {
-        userId = nextUserId;
-        nextUserId++;
-    }
+    public User() { }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public static int getNextUserId() {
-        return nextUserId;
-    }
-
-    public static void setNextUserId(int nextUserId) {
-        User.nextUserId = nextUserId;
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {
